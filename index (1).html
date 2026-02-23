@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRADE PRO AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-header">
+  <div class="close-btn"><i class="fas fa-xmark"></i></div>
+  <div class="title"><div class="logo-icon">📈</div><span class="brand-trade">TRADE</span><span class="brand-pro">PRO</span><span class="brand-ai">AI</span></div>
+  <div class="right-icons"><div class="status-dot"></div><div class="icon-btn"><i class="fas fa-bell"></i></div><div class="icon-btn"><i class="fas fa-gear"></i></div></div>
+</div>
+
+<div class="tab-page active" id="pageHome">
+  <div class="page-container">
+    <div class="live-bar animate-in"><div class="live-dot"></div><span class="live-text">LIVE • TRADE PRO LOGICS</span></div>
+    <div class="period-card animate-in">
+      <div class="period-left"><span class="period-label">CURRENT PERIOD</span><span class="period-value" id="periodDisplay">----</span></div>
+      <div class="timer-circle"><svg viewBox="0 0 56 56"><circle class="timer-bg" cx="28" cy="28" r="24"/><circle class="timer-fg" id="timerFg" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="0"/></svg><span class="timer-text" id="timerText">--</span></div>
+    </div>
+    <div class="server-badge animate-in"><span><div class="pulse-ring"></div>TRADE PRO AI v5</span></div>
+    <div class="prediction-hero animate-in" id="predHero">
+      <div class="pred-main-row">
+        <span class="pred-size-display big-text" id="predSizeText">--</span>
+        <div class="pred-divider"></div>
+        <span class="pred-number-display" id="predNumText">-</span>
+      </div>
+      <div class="confidence-bar-wrapper">
+        <div class="confidence-bar"><div class="confidence-fill" id="confFill" style="width:0%"></div></div>
+        <span class="confidence-value" id="confValue">--%</span>
+      </div>
+      <div id="levelBadge" class="level-badge safe" style="display:none;">
+        <i class="fas fa-layer-group"></i><span id="levelText">LEVEL 1</span>
+      </div>
+    </div>
+    <div class="metrics-grid animate-in">
+      <div class="metric-card pass-metric"><div class="metric-icon"><i class="fas fa-check"></i></div><span class="metric-label">PASS</span><span class="metric-value" id="cardPass">0</span></div>
+      <div class="metric-card fail-metric"><div class="metric-icon"><i class="fas fa-xmark"></i></div><span class="metric-label">FAIL</span><span class="metric-value" id="cardFail">0</span></div>
+      <div class="metric-card acc-metric"><div class="metric-icon"><i class="fas fa-bullseye"></i></div><span class="metric-label">ACCURACY</span><span class="metric-value" id="cardAccuracy">0%</span></div>
+      <div class="metric-card bets-metric"><div class="metric-icon"><i class="fas fa-chart-line"></i></div><span class="metric-label">BETS</span><span class="metric-value" id="cardBets">0</span></div>
+    </div>
+    <div class="donut-section animate-in">
+      <div class="donut-section-title">📊 PERFORMANCE</div>
+      <div class="donut-row">
+        <div class="donut-item"><div class="donut-ring"><svg viewBox="0 0 68 68"><circle class="bg-circle" cx="34" cy="34" r="27"/><circle class="fg-circle" id="donutPass" cx="34" cy="34" r="27" stroke="#00f5a0" stroke-dasharray="0 169.6"/></svg><span class="donut-center" id="donutPassVal" style="color:#00f5a0">0</span></div><div class="donut-label">PASS</div></div>
+        <div class="donut-item"><div class="donut-ring"><svg viewBox="0 0 68 68"><circle class="bg-circle" cx="34" cy="34" r="27"/><circle class="fg-circle" id="donutFail" cx="34" cy="34" r="27" stroke="#ff4757" stroke-dasharray="0 169.6"/></svg><span class="donut-center" id="donutFailVal" style="color:#ff4757">0</span></div><div class="donut-label">FAIL</div></div>
+        <div class="donut-item"><div class="donut-ring"><svg viewBox="0 0 68 68"><circle class="bg-circle" cx="34" cy="34" r="27"/><circle class="fg-circle" id="donutAcc" cx="34" cy="34" r="27" stroke="#a855f7" stroke-dasharray="0 169.6"/></svg><span class="donut-center" id="donutAccVal" style="color:#a855f7">0%</span></div><div class="donut-label">ACC</div></div>
+        <div class="donut-item"><div class="donut-ring"><svg viewBox="0 0 68 68"><circle class="bg-circle" cx="34" cy="34" r="27"/><circle class="fg-circle" id="donutBets" cx="34" cy="34" r="27" stroke="#4facfe" stroke-dasharray="0 169.6"/></svg><span class="donut-center" id="donutBetsVal" style="color:#4facfe">0</span></div><div class="donut-label">BETS</div></div>
+      </div>
+    </div>
+    <div class="streak-bar animate-in"><span class="streak-icon" id="streakIcon">🔥</span><div class="streak-info"><span class="streak-label">STREAK</span><span class="streak-value win-streak" id="streakValue">0</span></div></div>
+    <div class="recent-section animate-in"><span class="section-title"><i class="fas fa-clock-rotate-left"></i>LAST 10</span><div class="recent-grid" id="recentBalls"></div></div>
+  </div>
+</div>
+
+<div class="tab-page" id="pageServer">
+  <div class="page-container">
+    <div class="live-bar animate-in"><div class="live-dot"></div><span class="live-text">20 LOGIC ENGINE</span></div>
+    <div class="server-card animate-in"><div class="server-card-title"><i class="fas fa-bolt" style="color:var(--accent-gold)"></i>ALL 20 LOGICS</div><div id="logicItems"></div></div>
+    <div class="server-card animate-in"><div class="server-card-title"><i class="fas fa-brain" style="color:var(--accent-purple)"></i>ACTIVE PATTERNS</div><div id="patternCards"></div></div>
+    <div class="heatmap-section animate-in"><div class="server-card-title"><i class="fas fa-grip" style="color:var(--accent-cyan)"></i>HEATMAP</div><div class="heatmap-grid" id="heatmapGrid"></div></div>
+  </div>
+</div>
+
+<div class="tab-page" id="pageHistory">
+  <div class="page-container">
+    <div class="live-bar animate-in"><div class="live-dot"></div><span class="live-text">HISTORY</span></div>
+    <div class="history-stats-bar animate-in">
+      <div class="hs-item"><div class="hs-value" id="hsWins" style="color:var(--accent-green)">0</div><div class="hs-label">WINS</div></div>
+      <div class="hs-item"><div class="hs-value" id="hsLosses" style="color:var(--accent-red)">0</div><div class="hs-label">LOSSES</div></div>
+      <div class="hs-item"><div class="hs-value" id="hsAcc" style="color:var(--accent-purple)">0%</div><div class="hs-label">ACC</div></div>
+      <div class="hs-item"><div class="hs-value" id="hsTotal" style="color:var(--accent-blue)">0</div><div class="hs-label">TOTAL</div></div>
+    </div>
+    <div id="historyList"></div>
+    <button class="clear-btn" id="clearHistoryBtn"><i class="fas fa-trash"></i> CLEAR</button>
+  </div>
+</div>
+
+<div class="tab-page" id="pageTelegram">
+  <div class="page-container">
+    <div class="live-bar animate-in"><div class="live-dot"></div><span class="live-text">TELEGRAM</span></div>
+    <div class="server-card animate-in">
+      <div class="server-card-title"><i class="fab fa-telegram" style="color:var(--accent-blue)"></i>BOT CONFIG</div>
+      <div class="tg-input-group"><label class="tg-label">BOT TOKEN</label><input type="text" class="tg-input" id="botToken" placeholder="123456:ABC-DEF..."></div>
+      <div class="tg-input-group"><label class="tg-label">CHANNEL ID</label><input type="text" class="tg-input" id="channelId" placeholder="@channel or -100..."></div>
+      <button class="tg-btn start-btn" id="startSession"><i class="fas fa-rocket"></i>START</button>
+      <button class="tg-btn stop-btn" id="stopSession" disabled><i class="fas fa-stop"></i>STOP</button>
+      <div class="tg-status inactive-status" id="sessionStatus"><i class="fas fa-circle" style="font-size:0.5rem"></i>INACTIVE</div>
+      <div class="tg-preview">
+        <div class="tg-preview-title"><i class="fas fa-eye" style="color:var(--accent-cyan)"></i>MESSAGE PREVIEW</div>
+        <div class="tg-preview-msg">
+          <div class="tg-line">📈 <span class="tg-bold">TRADE PRO AI</span></div>
+          <div class="tg-line">&nbsp;</div>
+          <div class="tg-line">📌 <span class="tg-bold">123</span></div>
+          <div class="tg-line">🎯 <span class="tg-bold">BIG 7</span></div>
+        </div>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="tg-feature"><div class="tg-feature-icon" style="background:var(--accent-green-dim);color:var(--accent-green)"><i class="fas fa-paper-plane"></i></div><span class="tg-feature-text">Prediction messages</span></div>
+        <div class="tg-feature"><div class="tg-feature-icon" style="background:rgba(168,85,247,0.15);color:var(--accent-purple)"><i class="fas fa-image"></i></div><span class="tg-feature-text">Win/Loss stickers</span></div>
+        <div class="tg-feature"><div class="tg-feature-icon" style="background:rgba(251,191,36,0.15);color:var(--accent-gold)"><i class="fas fa-shield-halved"></i></div><span class="tg-feature-text">Period last 3 digits</span></div>
+      </div>
+      <div class="tg-log" id="tgLog"><div class="log-info">📋 Waiting for session start...</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <div class="nav-item active" data-page="pageHome"><i class="fas fa-home"></i><div class="nav-label">Home</div></div>
+  <div class="nav-item" data-page="pageServer"><i class="fas fa-server"></i><div class="nav-label">Server</div></div>
+  <div class="nav-item" data-page="pageHistory"><i class="fas fa-clock-rotate-left"></i><div class="nav-label">History</div></div>
+  <div class="nav-item" data-page="pageTelegram"><i class="fab fa-telegram"></i><div class="nav-label">Telegram</div></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
